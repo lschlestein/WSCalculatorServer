@@ -1,4 +1,4 @@
-# Web Service
+# Web Service (Server)
 Repositório onde é demonstrado um Web Service Básico com JAX-WS.
 Para implementar esse WS (Web Service) as dependencias básicas necessárias são as seguintes:
 
