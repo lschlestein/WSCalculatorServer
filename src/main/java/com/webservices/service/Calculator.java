@@ -7,7 +7,7 @@ import jakarta.jws.soap.SOAPBinding.Style;
 
 //Service Endpoint Interface(SEI)
 @WebService
-@SOAPBinding(style = Style.RPC)
+@SOAPBinding(style = Style.RPC)//tipos primitivos in/out
 public interface Calculator {
     @WebMethod
     public double add(double a, double b);
