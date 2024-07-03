@@ -80,7 +80,7 @@ public class Main {
 ```
 
 Após, empacotar a aplicação (maven clean package), localizar o diretório onde está o .jar criado, e rodar a aplicação.
-A mensagem Serviço publicaco com sucesso deverá ser mostrada.
+A mensagem Serviço publicado com sucesso deverá ser mostrada.
 ``` shell
 C:\Users\Lucas\eclipse-workspace\WSCalculatorServer\target>java -jar WSCalculator-1.0-SNAPSHOT.jar
 Serviço publicado com sucesso
