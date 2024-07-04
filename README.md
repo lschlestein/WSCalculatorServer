@@ -1,8 +1,21 @@
 # Web Service (Server)
-Repositório onde é demonstrado um Web Service Básico com JAX-WS.
-Esse repositório implementará o lado do servidor, caso deseje implementar um cliente o repositório está [aqui](https://github.com/lschlestein/WSCalculatorClient)
-Para implementar esse WS (Web Service) as dependencias básicas necessárias são as seguintes:
+## Objetivo do Repositório
+Este repositório tem como objetivo demonstrar a criação de um Web Service (WS) básico utilizando JAX-WS. 
+Ele fornece um exemplo prático de como implementar um web service, 
+desde a configuração das dependências necessárias até a implementação e publicação do serviço.
 
+## O que são Web Services?
+Web Services são componentes de software que permitem a comunicação entre diferentes aplicações através da web. Eles utilizam padrões abertos como XML, SOAP, WSDL e UDDI para garantir a interoperabilidade entre diferentes sistemas. 
+Existem dois principais tipos de Web Services: SOAP (Simple Object Access Protocol) e REST (Representational State Transfer).
+
+Neste projeto, estamos utilizando SOAP, um protocolo baseado em XML que permite a comunicação entre aplicações através de mensagens HTTP.
+
+### Dependências Utilizadas
+Para implementar um Web Service com JAX-WS, são necessárias algumas dependências básicas no projeto Maven. Estas dependências são responsáveis por fornecer as bibliotecas necessárias para a criação e execução dos serviços web. As principais dependências utilizadas são:
+
+- jakarta.xml.ws-api: Fornece a API JAX-WS para criar e consumir Web Services. A versão utilizada é 3.0.0.
+- jaxws-rt: Implementação de referência (runtime) de JAX-WS, fornecida pela Sun/Oracle. A versão utilizada é 3.0.0.
+- jaxws-ri: Runtime implementation (RI) de JAX-WS, também fornecida pela Sun/Oracle. A versão utilizada é 3.0.0.
 ``` xml
        <dependency>
             <groupId>jakarta.xml.ws</groupId>
@@ -23,10 +36,13 @@ Para implementar esse WS (Web Service) as dependencias básicas necessárias sã
             <type>pom</type>
         </dependency>
 ```
+## Implementação do Web Service
 
-Logo em seguida, é necessário criarmos uma interface, que fará que disponibilizará nossos serviços:
-
-(Calculator.java) - Service Endpoint Interface (SEI)
+### Interface de Serviço (Service Endpoint Interface - SEI) - (Calculator.java)
+A interface do serviço define os métodos que serão disponibilizados pelo Web Service. Ela deve ser anotada com @WebService e os métodos devem ser anotados com @WebMethod.
+Já a anotação @SOAPBinding, configura o retorno de nosso serviço. Assim o lado client, poderá acessar os métodos e serviço posteriormente.
+Deixo uma fonte para maiores informações:
+https://developer.ibm.com/articles/ws-whichwsdl/
 ``` java
 @WebService
 @SOAPBinding(style = Style.RPC)
@@ -42,19 +58,13 @@ public interface Calculator {
 
 }
 ```
-É necessário anotar essa interface com @Webservice.
-Já a anotação @SOAPBinding, configura o retorno de nosso serviço. 
-Deixo uma fonte para maiores informações:
-https://developer.ibm.com/articles/ws-whichwsdl/
 
-Também é necessário anotar cada um de nossos métodos (serviços) que serão disponiblizados posteriormente.
+### Implementação do Serviço (Service Implementation Bean - SIB) - (CalculatorImpl.java)
 
-
-Já na implementação é necessário também utilizar a anotação @WebService, porém, apontando para a nossa interface (Calculator)
+A implementação do serviço deve implementar a interface definida anteriormente e também deve ser anotada com @WebService, especificando a interface que ela implementa.
 
 @WebService(endpointInterface = "com.webservices.service.Calculator")
 
-(CalculatorImpl.java) - Service Implementation Bean (SIB)
 ```java
 @WebService(endpointInterface = "com.webservices.service.Calculator")
 public class CalculatorImpl implements Calculator {
@@ -67,7 +77,9 @@ public class CalculatorImpl implements Calculator {
 .
 .
 ```
-Após, devemos rodar nosso Web Service, em uma classe principal:
+### Publicação do Serviço 
+
+Após, devemos rodar nosso Web Service:
 Criamos uma instância de nosso CalculatorImpl e em seguida publicamos o serviço:
 Nesse caso estamos utilizando a porta 8085.
 ``` java
@@ -79,6 +91,7 @@ public class Main {
     }
 }
 ```
+## Empacotamento do jar com Maven
 
 Para empacotar a aplicação é necessário configurar arquivo pom.xml, para copiar as depedências para dentro da pasta /libs conforme segue:
 ```xml
@@ -121,20 +134,20 @@ Para empacotar a aplicação é necessário configurar arquivo pom.xml, para cop
         </plugins>
     </build>
 ```
-
-Após, empacotar a aplicação (maven clean package), localizar o diretório onde está o .jar criado, e rodar a aplicação.
+### Executando o Web Service
+Após, empacotar a aplicação (com `maven clean package`), localizar o diretório onde está o .jar criado, e rodar a aplicação.
 A mensagem Serviço publicado com sucesso deverá ser mostrada.
 ``` shell
 C:\Users\Lucas\eclipse-workspace\WSCalculatorServer\target>java -jar WSCalculator-1.0-SNAPSHOT.jar
 Web Service successfully published
 ```
-
+## Teste do Web Service
 Para confirmar, acessar no navegador o endereço:
 http://localhost:8085/service/calculator
 ![image](https://github.com/lschlestein/WSCalculatorServer/assets/103784532/b586eb5d-53a6-4920-b0b0-71498edcb1de)
 
 Se tudo estiver ocorrido como o esperado, o WS estará rodando.
-É possível testa-lo com o SoapUI no link:
+Para testar o Web Service, você pode utilizar ferramentas como o SoapUI e acessar o WSDL no seguinte link:
 http://localhost:8085/service/calculator?wsdl
 
 
