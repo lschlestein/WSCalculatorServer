@@ -1,10 +1,10 @@
-package com.academia.webservices.servico;
+package com.webservices.service;
 
 //Service Implementation Bean (SIB)
 
 import jakarta.jws.WebService;
 
-@WebService(endpointInterface = "com.academia.webservices.servico.Calculator")
+@WebService(endpointInterface = "com.webservices.service.Calculator")
 public class CalculatorImpl implements Calculator {
 
 	@Override

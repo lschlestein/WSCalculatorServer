@@ -1,4 +1,4 @@
-package com.academia.webservices.servico;
+package com.webservices.service;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;

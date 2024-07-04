@@ -55,7 +55,7 @@ Já na implementação é necessário também utilizar a anotação @WebService,
 
 (CalculatorImpl.java) - Service Implementation Bean (SIB)
 ```java
-@WebService(endpointInterface = "com.academia.webservices.servico.Calculator")
+@WebService(endpointInterface = "com.webservices.service.Calculator")
 public class CalculatorImpl implements Calculator {
 
 	@Override
@@ -66,15 +66,15 @@ public class CalculatorImpl implements Calculator {
 .
 .
 ```
-Após, devemos rodar nosso WS, em uma classe principal:
+Após, devemos rodar nosso Web Service, em uma classe principal:
 Criamos uma instância de nosso CalculatorImpl e em seguida publicamos o serviço:
 Nesse caso estamos utilizando a porta 8085.
 ``` java
 public class Main {
     public static void main(String[] args) {
         CalculatorImpl calculator = new CalculatorImpl();
-        Endpoint.publish("http://localhost:8085/servico/calculator", calculator);
-        System.out.println("Serviço publicado com sucesso");
+        Endpoint.publish("http://localhost:8085/service/calculator", calculator);
+        System.out.println("Web Service successfully published");
     }
 }
 ```
@@ -125,16 +125,16 @@ Após, empacotar a aplicação (maven clean package), localizar o diretório ond
 A mensagem Serviço publicado com sucesso deverá ser mostrada.
 ``` shell
 C:\Users\Lucas\eclipse-workspace\WSCalculatorServer\target>java -jar WSCalculator-1.0-SNAPSHOT.jar
-Serviço publicado com sucesso
+Web Service successfully published
 ```
 
 Para confirmar, acessar no navegador o endereço:
-http://localhost:8085/servico/calculator
+http://localhost:8085/service/calculator
 ![image](https://github.com/lschlestein/WSCalculatorServer/assets/103784532/b586eb5d-53a6-4920-b0b0-71498edcb1de)
 
 Se tudo estiver ocorrido como o esperado, o WS estará rodando.
 É possível testa-lo com o SoapUI no link:
-http://localhost:8085/servico/calculator?wsdl
+http://localhost:8085/service/calculator?wsdl
 
 
 
