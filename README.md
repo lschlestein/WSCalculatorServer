@@ -51,7 +51,7 @@ Também é necessário anotar cada um de nossos métodos (serviços) que serão 
 
 Já na implementação é necessário também utilizar a anotação @WebService, porém, apontando para a nossa interface (Calculator)
 
-@WebService(endpointInterface = "com.academia.webservices.servico.Calculator")
+@WebService(endpointInterface = "com.webservices.service.Calculator")
 
 (CalculatorImpl.java) - Service Implementation Bean (SIB)
 ```java
